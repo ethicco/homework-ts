@@ -11,7 +11,7 @@ import { BooksService } from './books.service';
 import type { IBook, IBookCreate, IBookUpdate } from 'src/common/interfaces';
 import { ParseObjectIdPipe } from '@nestjs/mongoose';
 
-@Controller()
+@Controller('books')
 export class BooksController {
   constructor(private readonly booksService: BooksService) {}
 

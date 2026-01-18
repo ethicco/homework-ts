@@ -1,9 +1,9 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { UsersRepository } from 'src/common/database';
+import { UsersRepository } from '../../common/database';
 import { SignInRequest, SignUpRequest } from './dto';
-import { UtilsService } from 'src/common/utils';
+import { UtilsService } from '../../common/utils';
 import { ConfigService } from '@nestjs/config';
-import { ITokens } from 'src/common/interfaces';
+import { ITokens } from '../../common/interfaces';
 
 @Injectable()
 export class AuthService {

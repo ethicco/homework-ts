@@ -1,5 +1,6 @@
 import {
   Body,
+  Controller,
   Delete,
   Get,
   Param,
@@ -20,6 +21,7 @@ import { JwtAuthGuard } from '../../common/guard';
 
 @UseFilters(HttpExceptionFilter)
 @UseInterceptors(HandleInterceptor)
+@Controller('books')
 export class BooksController {
   constructor(private readonly booksService: BooksService) {}
 

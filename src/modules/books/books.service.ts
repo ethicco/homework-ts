@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { BooksRepository } from '../../common/database';
 import { IBook, IBookCreate, IBookUpdate } from '../../common/interfaces';
+
 @Injectable()
 export class BooksService {
   constructor(private readonly repository: BooksRepository) {}

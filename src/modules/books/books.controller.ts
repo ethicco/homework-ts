@@ -1,5 +1,6 @@
 import {
   Body,
+  Controller,
   Delete,
   Get,
   Param,
@@ -10,16 +11,17 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { BooksService } from './books.service';
-import type { IBook, IBookCreate, IBookUpdate } from 'src/common/interfaces';
+import type { IBook, IBookCreate, IBookUpdate } from '../../common/interfaces';
 import { ParseObjectIdPipe } from '@nestjs/mongoose';
-import { ValidationPipe } from 'src/common/pipes/validation.pipe';
+import { ValidationPipe } from '../../common/pipes/validation.pipe';
 import { schemaBook } from './schema/book.schema';
-import { HttpExceptionFilter } from 'src/common/exceptions/http-exception.filter';
-import { HandleInterceptor } from 'src/common/interceptors/handle.interceptor';
-import { JwtAuthGuard } from 'src/common/guard';
+import { HttpExceptionFilter } from '../../common/exceptions/http-exception.filter';
+import { HandleInterceptor } from '../../common/interceptors/handle.interceptor';
+import { JwtAuthGuard } from '../../common/guard';
 
 @UseFilters(HttpExceptionFilter)
 @UseInterceptors(HandleInterceptor)
+@Controller('books')
 export class BooksController {
   constructor(private readonly booksService: BooksService) {}
 

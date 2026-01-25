@@ -4,10 +4,23 @@ import { ConfigService } from '@nestjs/config';
 import { HttpExceptionFilter } from './common/exceptions/http-exception.filter';
 import { HandleInterceptor } from './common/interceptors/handle.interceptor';
 import { ValidationPipe } from '@nestjs/common';
+import session from 'express-session';
+import passport from 'passport';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const config = app.get(ConfigService);
+
+  app.use(
+    session({
+      secret: config.get('SESSION_SECRET', 'secret'),
+      resave: false,
+      saveUninitialized: false,
+    }),
+  );
+
+  app.use(passport.initialize());
+  app.use(passport.session());
 
   app.useGlobalInterceptors(new HandleInterceptor());
   app.useGlobalFilters(new HttpExceptionFilter());
@@ -16,4 +29,4 @@ async function bootstrap() {
   await app.listen(config.get('PORT', 3000));
 }
 
-bootstrap();
+bootstrap().catch((err) => console.log(err));

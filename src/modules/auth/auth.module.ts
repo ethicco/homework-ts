@@ -8,7 +8,9 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import {
   AccessTokenStrategy,
   RefreshTokenStrategy,
+  YandexStrategy,
 } from '../../common/strategies';
+import { SessionSerializer } from 'src/common/serializers';
 
 @Module({
   imports: [
@@ -26,6 +28,12 @@ import {
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService, AccessTokenStrategy, RefreshTokenStrategy],
+  providers: [
+    AuthService,
+    AccessTokenStrategy,
+    RefreshTokenStrategy,
+    YandexStrategy,
+    SessionSerializer,
+  ],
 })
 export class AuthModule {}
